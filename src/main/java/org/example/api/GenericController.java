@@ -44,7 +44,7 @@ public class GenericController {
 
         CallMetaDataContext context = new CallMetaDataContext();
         context.setFunction(true);
-        context.setSchemaName("ADMIN");
+        context.setSchemaName(System.getProperty("SCHEMA"));
         context.setProcedureName(procName);
         context.initializeMetaData(dataSource);
         context.processParameters(Collections.emptyList());
