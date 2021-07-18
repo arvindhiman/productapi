@@ -9,8 +9,29 @@ public class SnakeToCamelCaseMapper implements FieldNameMapper {
 
     Properties cache = new Properties();
 
+    public String createSnakeCaseInputParam(String param) {
+
+        char[] characters = param.toCharArray();
+        StringBuilder sb = new StringBuilder("ip_");
+        for (char c: characters) {
+            if (Character.isUpperCase(c)) {
+                sb.append(Character.toLowerCase(c));
+            } else {
+                sb.append("_").append(Character.toLowerCase(c));
+            }
+        }
+
+        return sb.toString();
+
+    }
+
+    public String createCamelCaseInputParam(String param) {
+        String removedPrefix = param.replaceAll("ip_","");
+        return convertToCamelCase(removedPrefix);
+    }
+
     @Override
-    public String convert(String field) {
+    public String convertToCamelCase(String field) {
 
         if (cache.getProperty(field) != null) {
             return cache.getProperty(field);

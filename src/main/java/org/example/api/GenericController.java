@@ -61,7 +61,7 @@ public class GenericController {
         for(SqlParameter sqlParameter: sqlParameters) {
             if (sqlParameter.isInputValueProvided()) {
                 String name = sqlParameter.getName().toLowerCase();
-                String value = request.getParameter(name);
+                String value = request.getParameter(fieldNameMapper.createCamelCaseInputParam(name));
                 in.addValue(name, value);
             }
 
@@ -87,7 +87,7 @@ public class GenericController {
             for(String key: record.keySet()) {
                 Object value = record.get(key);
 
-                String newKey = fieldNameMapper.convert(key);
+                String newKey = fieldNameMapper.convertToCamelCase(key);
                 newMap.put(newKey, value);
 
             }
