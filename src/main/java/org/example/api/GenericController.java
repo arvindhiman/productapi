@@ -24,6 +24,7 @@ public class GenericController {
     static Map<String, String> uriToProcMap = new HashMap<>();
     static {
         uriToProcMap.put("/products", "PROC_PRODUCTS");
+        uriToProcMap.put("/named-products", "PROC_NAMED_PRODUCTS");
     }
 
     @Autowired
